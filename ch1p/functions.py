@@ -13,7 +13,7 @@ def _get_vars(params: List[Tuple], kw: dict) -> List[AnyStr]:
         elif env_name in os.environ:
             result.append(os.environ[env_name])
         else:
-            raise RuntimeError("missing parameter %s or variable %s" % (kw_name, env_name))
+            raise RuntimeError("missing parameter '%s' or variable '%s'" % (kw_name, env_name))
 
     return result
 
