@@ -1,6 +1,6 @@
 import os, json
 
-from functions import _get_vars
+from .functions import _get_vars
 
 
 class State:

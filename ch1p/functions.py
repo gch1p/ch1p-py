@@ -18,17 +18,20 @@ def _get_vars(params: List[Tuple], kw: dict) -> List[AnyStr]:
     return result
 
 
-def telegram_notify(text: str, parse_mode: str = 'html', **kwargs):
-    token, chat_id = _get_vars([
+def telegram_notify(text: str, parse_mode: str = None, **kwargs):
+    chat_id, token = _get_vars([
         ('chat_id', 'TELEGRAM_NOTIFY_CHAT_ID'),
         ('token', 'TELEGRAM_NOTIFY_TOKEN')
     ], kwargs)
 
-    r = requests.post('https://api.telegram.org/bot%s/sendMessage' % token, data={
+    data = {
         'chat_id': chat_id,
-        'text': text,
-        'parse_mode': parse_mode
-    })
+        'text': text
+    }
+    if parse_mode is not None:
+        data['parse_mode'] = parse_mode
+
+    r = requests.post('https://api.telegram.org/bot%s/sendMessage' % token, data=data)
 
     if r.status_code != 200:
         raise RuntimeError("telegram returned %d" % r.status_code)
