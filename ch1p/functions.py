@@ -20,8 +20,8 @@ def _get_vars(params: List[Tuple], kw: dict) -> List[AnyStr]:
 
 def telegram_notify(text: str, parse_mode: str = None, **kwargs):
     chat_id, token = _get_vars([
-        ('chat_id', 'TELEGRAM_NOTIFY_CHAT_ID'),
-        ('token', 'TELEGRAM_NOTIFY_TOKEN')
+        ('chat_id', 'TELEGRAM_CHAT_ID'),
+        ('token', 'TELEGRAM_TOKEN')
     ], kwargs)
 
     data = {
