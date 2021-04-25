@@ -1,0 +1,5 @@
+.idea
+build/
+dist/
+ch1p.egg-info
+venv/
